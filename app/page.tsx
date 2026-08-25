@@ -39,8 +39,16 @@ export default function Home(){
   function openDemo(side:"BUY"|"SELL"){
     if(!connected) return alert("اتصل بحساب Demo أولًا.");
     const win=Math.random()>.35;
-    setTrades(t=>[{time:new Date().toLocaleTimeString(),side,amount,result:win?"WIN":"LOSS"},...t].slice(0,20));
-  }
+    const result: Trade["result"] = win ? "WIN" : "LOSS";
+    setTrades(t => [
+  {
+    time: new Date().toLocaleTimeString(),
+    side,
+    amount,
+    result,
+  },
+  ...t,
+].slice(0, 20));
 
   return <main>
     <header className="top">
