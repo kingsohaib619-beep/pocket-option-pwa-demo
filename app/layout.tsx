@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import ServiceWorkerRegister from "./ServiceWorkerRegister";
 
 export const metadata: Metadata = {
   title: "PO BOT PRO",
@@ -20,7 +21,11 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
-    apple: "/icon-192.png",
+    apple: {
+      url: "/icon-192.png",
+      sizes: "192x192",
+      type: "image/png",
+    },
   },
 
   appleWebApp: {
@@ -46,7 +51,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ServiceWorkerRegister />
+        {children}
+      </body>
     </html>
   );
 }
